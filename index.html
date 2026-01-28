@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>婚外彼氏の沈黙、その正体。 | SILENT TRUTH</title>
+    
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,8 +70,6 @@
         .cursor-outline { width: 35px; height: 35px; border: 1px solid rgba(253, 252, 251, 0.3); transition: all 0.4s ease-out; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1.4s cubic-bezier(0.25, 1, 0.5, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-        .curve-top { clip-path: ellipse(150% 100% at 50% 100%); }
-        .curve-bottom { clip-path: ellipse(150% 100% at 50% 0%); }
         .water-grad {
             background: linear-gradient(135deg, #1a0f1d 0%, #2d1b33 50%, #1a0f1d 100%);
         }
@@ -112,10 +111,10 @@ const CustomCursor = () => {
         return () => window.removeEventListener('mousemove', move);
     }, []);
     return (
-        <>
+        <React.Fragment>
             <div ref={dotRef} className="cursor-dot hidden md:block"></div>
             <div ref={outlineRef} className="cursor-outline hidden md:block"></div>
-        </>
+        </React.Fragment>
     );
 };
 
@@ -128,8 +127,12 @@ const App = () => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        setTimeout(() => setLoading(false), 2000);
+        
+        // 読み込み完了後に実行
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            setLoading(false);
+        }, 2000);
     }, []);
 
     return (
@@ -169,9 +172,10 @@ const App = () => {
                         読み進める
                     </a>
                     
+                    {/* 1枚目の画像：パスを修正 */}
                     <div className="reveal mt-4 max-w-md mx-auto px-4">
                         <img 
-                            src="https://raw.githubusercontent.com/yossy-sns/kongai/main/IMG_0212.webp" 
+                            src="https://raw.githubusercontent.com/yossy-sns/kongai/main/assets/IMG_0212.webp" 
                             alt="The Silent Truth"
                             className="w-full h-auto opacity-80 mix-blend-lighten animate-float"
                         />
@@ -227,10 +231,10 @@ const App = () => {
                         追う恋から、<br/>追われる静けさへ.
                     </h2>
                     
-                    {/* ここに画像を追加しました */}
+                    {/* 2枚目の画像 */}
                     <div className="reveal mb-20 max-w-lg mx-auto px-4 text-center">
                         <img 
-                            src="https://raw.githubusercontent.com/yossy-sns/kongai/refs/heads/main/assets/IMG_0208.webp" 
+                            src="https://raw.githubusercontent.com/yossy-sns/kongai/main/assets/IMG_0208.webp" 
                             alt="The Silence Path"
                             className="w-full h-auto opacity-70 mix-blend-lighten animate-float"
                         />
