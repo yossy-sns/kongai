@@ -58,6 +58,22 @@
             color: #f5f0ed;
             overflow-x: hidden;
         }
+
+        /* 背景画像の固定レイヤー */
+        .fixed-bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('image.png'); /* 添付画像を背景に指定 */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15; /* かなり薄く表示 */
+            z-index: -1; /* コンテンツの背後に配置 */
+            pointer-events: none; /* クリック操作を邪魔しない */
+        }
+
         .reveal { 
             opacity: 0; 
             transform: translateY(40px); 
@@ -77,7 +93,7 @@
         .cursor-outline { width: 35px; height: 35px; border: 1px solid rgba(253, 252, 251, 0.3); transition: all 0.4s ease-out; }
         
         .water-grad {
-            background: linear-gradient(135deg, #1a0f1d 0%, #2d1b33 50%, #1a0f1d 100%);
+            background: linear-gradient(135deg, rgba(26, 15, 29, 0.9) 0%, rgba(45, 27, 51, 0.9) 50%, rgba(26, 15, 29, 0.9) 100%);
         }
         .readable-text {
             line-height: 2.4;
@@ -157,6 +173,9 @@ const App = () => {
     return (
         <div className="relative">
             <CustomCursor />
+            
+            {/* 背景固定レイヤー */}
+            <div className="fixed-bg-image"></div>
 
             <div className={`loader ${!loading ? 'hidden' : ''}`}>
                 <div className="text-center">
@@ -175,7 +194,7 @@ const App = () => {
                 </div>
             </nav>
 
-            <header className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+            <header className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-night-deep/40">
                 <div className="relative z-10 text-center px-6">
                     <span className="reveal font-elegant italic text-pearl-dark text-xs mb-10 tracking-[1.2em] block uppercase">
                         FOR WOMEN IN SILENT PAIN
@@ -192,18 +211,10 @@ const App = () => {
                             読み進める
                         </a>
                     </div>
-                    
-                    <div className="reveal mt-4 max-w-md mx-auto px-4">
-                        <img 
-                            src="https://raw.githubusercontent.com/yossy-sns/kongai/main/assets/IMG_0212.webp" 
-                            alt="The Silent Truth"
-                            className="w-full h-auto opacity-80 mix-blend-lighten animate-float"
-                        />
-                    </div>
                 </div>
             </header>
 
-            <section id="prologue" className="py-40 px-8 bg-night-deep">
+            <section id="prologue" className="py-40 px-8 bg-night-deep/80 backdrop-blur-sm">
                 <div className="max-w-5xl mx-auto">
                     <h2 className="reveal text-3xl font-light mb-16">
                         この恋は、<br/>誰にも見えない場所で<br/>静かに心を削っていく。
@@ -217,14 +228,14 @@ const App = () => {
                 </div>
             </section>
 
-            <section id="analysis" className="py-48 px-8 bg-night-purple">
+            <section id="analysis" className="py-48 px-8 bg-night-purple/80 backdrop-blur-sm">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="reveal text-3xl font-light mb-20">
                         男が無意識に引いている、<br/>たった一つの境界線
                     </h2>
 
                     <div className="grid md:grid-cols-2 gap-12">
-                        <div className="reveal p-16 bg-night-deep/50 rounded-3xl" style={{ transitionDelay: '0.2s' }}>
+                        <div className="reveal p-16 bg-night-deep/60 rounded-3xl" style={{ transitionDelay: '0.2s' }}>
                             <h3 className="mb-6 text-gold">心を使う相手</h3>
                             <p className="text-sm leading-loose">
                                 忙しくても、不安にはさせない。<br/>
@@ -233,7 +244,7 @@ const App = () => {
                             </p>
                         </div>
 
-                        <div className="reveal p-16 bg-night-deep/50 rounded-3xl" style={{ transitionDelay: '0.4s' }}>
+                        <div className="reveal p-16 bg-night-deep/60 rounded-3xl" style={{ transitionDelay: '0.4s' }}>
                             <h3 className="mb-6 text-gold">安心して放置できる相手</h3>
                             <p className="text-sm leading-loose">
                                 返事が遅れても許してくれる。<br/>
@@ -245,20 +256,12 @@ const App = () => {
                 </div>
             </section>
 
-            <section className="py-48 px-8 bg-night-deep">
+            <section className="py-48 px-8 bg-night-deep/80">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="reveal text-center text-3xl mb-20">
                         追う恋から、<br/>追われる静けさへ.
                     </h2>
                     
-                    <div className="reveal mb-20 max-w-lg mx-auto px-4 text-center">
-                        <img 
-                            src="https://raw.githubusercontent.com/yossy-sns/kongai/main/assets/IMG_0208.webp" 
-                            alt="The Silence Path"
-                            className="w-full h-auto opacity-70 mix-blend-lighten animate-float"
-                        />
-                    </div>
-
                     <div className="reveal readable-text text-pearl-base/70 space-y-10 text-center">
                         <p>彼の言葉を信じすぎないこと。</p>
                         <p>沈黙に振り回されない心を持つこと。</p>
@@ -279,7 +282,7 @@ const App = () => {
                     <div className="reveal">
                         <a href="https://note.com/yoshi_kongai/n/n2d1ea73b14f5?sub_rt=share_b" target="_blank"
                            className="block bg-pearl-base text-night-deep py-8 tracking-[0.4em] hover:bg-white transition-colors">
-                            今すぐ読む
+                            noteを読む
                         </a>
                     </div>
                 </div>
