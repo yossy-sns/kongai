@@ -58,7 +58,6 @@
             color: #f5f0ed;
             overflow-x: hidden;
         }
-        /* アニメーションの基本設定 */
         .reveal { 
             opacity: 0; 
             transform: translateY(40px); 
@@ -129,37 +128,29 @@ const App = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // 1. まずローディングを解除
         const timer = setTimeout(() => {
             setLoading(false);
         }, 1500);
-
         return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
-        // 2. ローディング解除後、DOMが確定してから監視を開始
         if (loading) return;
-
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
         };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // 一度表示されたら監視を止める（負荷軽減）
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
         
-        // .revealクラスを持つすべての要素を監視
         const elements = document.querySelectorAll('.reveal');
         elements.forEach(el => observer.observe(el));
-
         return () => observer.disconnect();
     }, [loading]);
 
@@ -167,7 +158,6 @@ const App = () => {
         <div className="relative">
             <CustomCursor />
 
-            {/* Loading Screen */}
             <div className={`loader ${!loading ? 'hidden' : ''}`}>
                 <div className="text-center">
                     <p className="font-elegant text-pearl-base tracking-[0.8em] animate-pulse">
@@ -198,7 +188,7 @@ const App = () => {
                         </span>
                     </h1>
                     <div className="reveal">
-                        <a href="#prologue" className="inline-block border border-pearl-dark/30 px-16 py-6 text-[11px] tracking-[0.5em] mb-16 transition-all hover:bg-pearl-base hover:text-night-deep">
+                        <a href="https://note.com/yoshi_kongai/n/n2d1ea73b14f5?sub_rt=share_b" className="inline-block border border-pearl-dark/30 px-16 py-6 text-[11px] tracking-[0.5em] mb-16 transition-all hover:bg-pearl-base hover:text-night-deep">
                             読み進める
                         </a>
                     </div>
@@ -287,7 +277,7 @@ const App = () => {
                     </p>
                     <div className="reveal text-5xl mb-12 font-elegant">1,980 JPY</div>
                     <div className="reveal">
-                        <a href="https://note.com/yoshi_kongai/n/n2d1ea73b14f5" target="_blank"
+                        <a href="https://note.com/yoshi_kongai/n/n2d1ea73b14f5?sub_rt=share_b" target="_blank"
                            className="block bg-pearl-base text-night-deep py-8 tracking-[0.4em] hover:bg-white transition-colors">
                             今すぐ読む
                         </a>
