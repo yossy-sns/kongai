@@ -153,7 +153,7 @@ const App = () => {
                 </div>
             </nav>
 
-            <header className="relative h-screen flex items-center justify-center overflow-hidden">
+            <header className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
                 <div className="relative z-10 text-center px-6">
                     <span className="font-elegant italic text-pearl-dark text-xs mb-10 tracking-[1.2em] block uppercase">
                         FOR WOMEN IN SILENT PAIN
@@ -165,9 +165,18 @@ const App = () => {
                             その沈黙が、あなたをこんなにも不安にさせる理由。
                         </span>
                     </h1>
-                    <a href="#prologue" className="inline-block border border-pearl-dark/30 px-16 py-6 text-[11px] tracking-[0.5em]">
+                    <a href="#prologue" className="inline-block border border-pearl-dark/30 px-16 py-6 text-[11px] tracking-[0.5em] mb-16 transition-colors hover:bg-pearl-base/5">
                         読み進める
                     </a>
+                    
+                    {/* 追加された画像セクション */}
+                    <div className="reveal mt-4 max-w-md mx-auto px-4">
+                        <img 
+                            src="https://raw.githubusercontent.com/yossy-sns/kongai/main/assets/0212.webp" 
+                            alt="The Silent Truth"
+                            className="w-full h-auto opacity-80 mix-blend-lighten animate-float"
+                        />
+                    </div>
                 </div>
             </header>
 
@@ -216,7 +225,7 @@ const App = () => {
             <section className="py-48 px-8 bg-night-deep">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-center text-3xl mb-20">
-                        追う恋から、<br/>追われる静けさへ。
+                        追う恋から、<br/>追われる静けさへ.
                     </h2>
                     <div className="readable-text text-pearl-base/70 space-y-10">
                         <p>彼の言葉を信じすぎないこと。</p>
